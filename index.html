@@ -181,6 +181,17 @@
     <!-- https://getbootstrap.com/ -->
     <script src="js/tooplate-scripts.js"></script>
     <script>
+        function UserAction() {
+            var data1;
+            fetch('http://127.0.0.1:5000/update')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);// Prints result from `response.json()` in getRequest
+            })
+            .catch(error => console.error(error))
+            return data1;
+        }
+
         let ctxLine,
             ctxBar,
             ctxPie,
@@ -194,8 +205,12 @@
         barChart, pieChart;
         // DOM is ready
         $(function () {
+            var data1;
+            data1 = UserAction();
+            console.log('Here');
+            console.log(data1);
             updateChartOptions();
-            drawLineChart(); // Line Chart
+            drawLineChart(data1); // Line Chart
             drawBarChart(); // Bar Chart
             drawPieChart(); // Pie Chart
             drawCalendar(); // Calendar
@@ -208,18 +223,7 @@
             });
         })
 
-        function UserAction() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                 if (this.readyState == 4 && this.status == 200) {
-                     alert(this.responseText);
-                 }
-            };
-            xhttp.open("GET", "http://127.0.0.1:5000/", true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.setRequestHeader("Access-Control-Allow-Origin", '*');
-            xhttp.send();
-        }
+
 
     </script>
 </body>
