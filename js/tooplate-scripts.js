@@ -1,6 +1,6 @@
 const width_threshold = 480;
 
-function drawLineChart() {
+function drawLineChart(returnData) {
   if ($("#lineChart").length) {
     ctxLine = document.getElementById("lineChart").getContext("2d");
     optionsLine = {
@@ -39,20 +39,6 @@ function drawLineChart() {
             fill: false,
             borderColor: "rgb(75, 192, 192)",
             lineTension: 0.1
-          },
-          {
-            label: "Popular Hits",
-            data: [33, 45, 37, 21, 55, 74, 69],
-            fill: false,
-            borderColor: "rgba(255,99,132,1)",
-            lineTension: 0.1
-          },
-          {
-            label: "Featured",
-            data: [44, 19, 38, 46, 85, 66, 79],
-            fill: false,
-            borderColor: "rgba(153, 102, 255, 1)",
-            lineTension: 0.1
           }
         ]
       },
@@ -60,6 +46,11 @@ function drawLineChart() {
     };
 
     lineChart = new Chart(ctxLine, configLine);
+    for (var key in returnData) {
+        console.log(key + " -> " + returnData[key]);
+    }
+      //console.log(Object.keys(returnData));
+
   }
 }
 

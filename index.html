@@ -181,10 +181,11 @@
     <!-- https://getbootstrap.com/ -->
     <script src="js/tooplate-scripts.js"></script>
     <script>
-            var GlobalVal;
-            function UserAction(url, cFunction) {
+        function UserAction(url, cFunction) {
                 var xhttp;
                 xhttp=new XMLHttpRequest();
+                xhttp.responseType = 'json';
+
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         cFunction(this);
@@ -193,14 +194,12 @@
                 xhttp.open("GET", url, true);
                 xhttp.send();
             }
-        function myFunction(xhttp) {
-            GlobalVal = xhttp.responseText
-            console.log(GlobalVal);
+            function myFunction(xhttp) {
+                GlobalVal = xhttp.response;
+                console.log(GlobalVal);
+                drawLineChart(GlobalVal);
 
-        }
-
-
-
+            }
         let ctxLine,
             ctxBar,
             ctxPie,
@@ -212,18 +211,20 @@
             configPie,
             lineChart;
         barChart, pieChart;
+
         // DOM is ready
         $(function () {
-            var data1;
-            console.log('Here');
-            console.log(data1);
+            var GlobalVal;
+            UserAction('http://127.0.0.1:5000/update',myFunction);
+            console.log(GlobalVal);
             updateChartOptions();
-            drawLineChart(data1); // Line Chart
+            //drawLineChart(); // Line Chart
             drawBarChart(); // Bar Chart
             drawPieChart(); // Pie Chart
             drawCalendar(); // Calendar
 
             $(window).resize(function () {
+
                 updateChartOptions();
                 updateLineChart();
                 updateBarChart();
