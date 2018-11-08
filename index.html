@@ -44,7 +44,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <button type="submit" onclick="UserAction()">Search</button>
+                                    <button type="submit" onclick="UserAction('http://127.0.0.1:5000/update',myFunction)">Search</button>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -181,16 +181,25 @@
     <!-- https://getbootstrap.com/ -->
     <script src="js/tooplate-scripts.js"></script>
     <script>
-        function UserAction() {
-            var data1;
-            fetch('http://127.0.0.1:5000/update')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);// Prints result from `response.json()` in getRequest
-            })
-            .catch(error => console.error(error))
-            return data1;
+            var GlobalVal;
+            function UserAction(url, cFunction) {
+                var xhttp;
+                xhttp=new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        cFunction(this);
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+        function myFunction(xhttp) {
+            GlobalVal = xhttp.responseText
+            console.log(GlobalVal);
+
         }
+
+
 
         let ctxLine,
             ctxBar,
@@ -206,7 +215,6 @@
         // DOM is ready
         $(function () {
             var data1;
-            data1 = UserAction();
             console.log('Here');
             console.log(data1);
             updateChartOptions();
