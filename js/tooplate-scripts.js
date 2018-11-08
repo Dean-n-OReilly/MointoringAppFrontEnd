@@ -20,22 +20,17 @@ function drawLineChart(returnData) {
     optionsLine.maintainAspectRatio =
       $(window).width() < width_threshold ? false : true;
 
+    var keys =Object.keys(returnData);
+    var values = Object.values(returnData);
+    console.log(keys);
     configLine = {
       type: "line",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July"
-        ],
+        labels: keys,
         datasets: [
           {
             label: "Latest Hits",
-            data: [88, 68, 79, 57, 56, 55, 70],
+            data: values,
             fill: false,
             borderColor: "rgb(75, 192, 192)",
             lineTension: 0.1
@@ -46,10 +41,7 @@ function drawLineChart(returnData) {
     };
 
     lineChart = new Chart(ctxLine, configLine);
-    for (var key in returnData) {
-        console.log(key + " -> " + returnData[key]);
-    }
-      //console.log(Object.keys(returnData));
+    console.log(Object.values(returnData));
 
   }
 }
