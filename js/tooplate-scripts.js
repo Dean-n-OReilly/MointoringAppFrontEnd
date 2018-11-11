@@ -20,9 +20,10 @@ function drawLineChart(returnData) {
     optionsLine.maintainAspectRatio =
       $(window).width() < width_threshold ? false : true;
 
-    var keys =Object.keys(returnData);
-    var values = Object.values(returnData);
+    var keys =Object.keys(returnData.CPU);
+    var values = Object.values(returnData.CPU);
     console.log(keys);
+    console.log(values);
     configLine = {
       type: "line",
       data: {
@@ -41,7 +42,7 @@ function drawLineChart(returnData) {
     };
 
     lineChart = new Chart(ctxLine, configLine);
-    console.log(Object.values(returnData));
+    console.log(Object.values(returnData.CPU));
 
   }
 }
@@ -105,7 +106,9 @@ function drawBarChart() {
   }
 }
 
-function drawPieChart() {
+function drawPieChart(data) {
+    var keys =Object.keys(data.CPUcurrent);
+    var values = Object.values(data.CPUcurrent);
   if ($("#pieChart").length) {
     ctxPie = document.getElementById("pieChart").getContext("2d");
     optionsPie = {
@@ -118,7 +121,7 @@ function drawPieChart() {
       data: {
         datasets: [
           {
-            data: [4600, 5400],
+            data: values,
             backgroundColor: [
               window.chartColors.purple,
               window.chartColors.green
@@ -126,7 +129,7 @@ function drawPieChart() {
             label: "Storage"
           }
         ],
-        labels: ["Used: 4,600 GB", "Available: 5,400 GB"]
+        labels: keys
       },
       options: optionsPie
     };

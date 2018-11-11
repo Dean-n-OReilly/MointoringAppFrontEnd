@@ -181,6 +181,9 @@
     <!-- https://getbootstrap.com/ -->
     <script src="js/tooplate-scripts.js"></script>
     <script>
+        function updateStatus(value){
+
+        }
         function UserAction(url, cFunction) {
                 var xhttp;
                 xhttp=new XMLHttpRequest();
@@ -198,6 +201,8 @@
                 GlobalVal = xhttp.response;
                 console.log(GlobalVal);
                 drawLineChart(GlobalVal);
+                drawPieChart(GlobalVal);
+
 
             }
         let ctxLine,
