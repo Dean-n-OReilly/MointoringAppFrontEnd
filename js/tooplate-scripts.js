@@ -105,7 +105,24 @@ function drawBarChart() {
     barChart = new Chart(ctxBar, configBar);
   }
 }
+function changeStatus(data){
+    var value = data["Health"];
+    if (value == "Healthy"){
+        console.log('Healthy');
+        document.getElementById("p1").innerHTML = value;
+        document.getElementById("p1").style.color = "green";
 
+    }
+    else{
+        document.getElementById("p1").innerHTML = value;
+        document.getElementById("p1").style.color = "red";
+
+
+        console.log('Not');
+    }
+
+
+}
 function drawPieChart(data) {
     var keys =Object.keys(data.CPUcurrent);
     var values = Object.values(data.CPUcurrent);

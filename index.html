@@ -29,7 +29,7 @@
                     <nav class="navbar navbar-expand-xl navbar-light bg-light">
                         <a class="navbar-brand" href="#">
                             <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
-                            <h1 class="tm-site-title mb-0">Dashboard Status: Healthy</h1>
+                            <h1 class="tm-site-title mb-0">Dashboard Status:<p id="p1">Undefinded</p></h1>
                         </a>
                         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -202,6 +202,7 @@
                 console.log(GlobalVal);
                 drawLineChart(GlobalVal);
                 drawPieChart(GlobalVal);
+                changeStatus(GlobalVal);
 
 
             }
@@ -224,9 +225,9 @@
             console.log(GlobalVal);
             updateChartOptions();
             //drawLineChart(); // Line Chart
-            drawBarChart(); // Bar Chart
-            drawPieChart(); // Pie Chart
-            drawCalendar(); // Calendar
+            //drawBarChart(); // Bar Chart
+            //drawPieChart(); // Pie Chart
+           // drawCalendar(); // Calendar
 
             $(window).resize(function () {
 
